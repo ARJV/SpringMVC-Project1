@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>НАЧАЛО</title>
+    <title>Список людей</title>
 </head>
+
 <body>
-  Привет, это начальный скелетный проект первого задания
+
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getName()} + ', ' + ${person.getBirth_date()}"></a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/people/new">Добавить человека</a>
+
 </body>
+
 </html>
