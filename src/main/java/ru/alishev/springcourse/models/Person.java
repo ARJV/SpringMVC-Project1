@@ -46,4 +46,13 @@ public class Person {
     public void setBirth_date(int birth_date) {
         this.birth_date = birth_date;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birth_date=" + birth_date +
+                '}';
+    }
 }
