@@ -8,14 +8,12 @@
 <body>
 
 <p th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"></p>
-@{/order/{id}/details(id=3,action='show_all')}
-
 
 <div>
     <span>Эта книга свободна. Кому её назначить?</span>
-    <form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()}, title=${book.getTitle()}, author=${book.getAuthor()}, year=${book.getYear()})}">
+    <form th:method="PATCH" th:action="@{/books/{id}/assingn(id=${book.getId()})}">
         <label for="person">Выберите человека</label>
-        <select id="person" th:field="*{book.person}">
+        <select id="person" name="person_id">
             <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}"></option>
         </select>
         <input type="submit" value="Назначить книгу">

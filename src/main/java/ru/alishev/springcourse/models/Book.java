@@ -18,14 +18,11 @@ public class Book {
     @Min(value = 1900)
     private int year;
 
-    private Person person;
-
-    public Book(long id, String title, String author, int year, Person person) {
+    public Book(long id, String title, String author, int year) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
-        this.person = person;
     }
 
     public Book() {
@@ -63,14 +60,6 @@ public class Book {
         this.year = year;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
     @Override
     public String toString() {
         return "Book{" +
@@ -78,7 +67,6 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", year=" + year +
-                ", person=" + person +
                 '}';
     }
 }
