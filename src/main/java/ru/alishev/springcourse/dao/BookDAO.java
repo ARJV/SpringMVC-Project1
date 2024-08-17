@@ -4,10 +4,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import ru.alishev.springcourse.models.Book;
-import ru.alishev.springcourse.models.Person;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -52,5 +50,10 @@ public class BookDAO {
 
     public void release(int id) {
         jdbcTemplate.update("UPDATE book SET person_id = null WHERE book.id=?", id);
+    }
+
+    public List<Book> getAssignedBooksByPersonId(int person_id) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE person_id=?",
+                new BeanPropertyRowMapper<>(Book.class), person_id);
     }
 }

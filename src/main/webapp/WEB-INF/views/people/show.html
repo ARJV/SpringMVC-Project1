@@ -9,7 +9,16 @@
 
 <p th:text="${person.getName() + ', ' + person.getBirth_date()}"></p>
 
-<br/>
+<div th:if="${books.isEmpty()}">
+    <span>Человек пока не взял ни одной книги</span>
+</div>
+
+<div th:unless="${books.isEmpty()}">
+    <hr/>
+    <div><b>Книги:</b></div>
+    <div th:each="book : ${books}" th:text="${book.getTitle()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getYear()}"></div>
+</div>
+
 <hr/>
 
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
