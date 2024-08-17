@@ -40,4 +40,17 @@ public class BookDAO {
         jdbcTemplate.update("UPDATE Book SET title=?, author=?, year=? WHERE id=?",
                 book.getTitle(), book.getAuthor(), book.getYear(), id);
     }
+
+    public void assign(int id, int personId) {
+        jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?", personId, id);
+    }
+
+    public String getOwnerNameById(int id) {
+        return jdbcTemplate.queryForObject("SELECT name FROM book LEFT JOIN person ON book.person_id = person.id WHERE book.id=?",
+                String.class, id);
+    }
+
+    public void release(int id) {
+        jdbcTemplate.update("UPDATE book SET person_id = null WHERE book.id=?", id);
+    }
 }
